@@ -109,4 +109,31 @@ limit 10;
 | 7          | "Daikin Industries, Ltd."              | 17600.00   | 
 | 53         | CJ Cheiljedang                         | 15802.83   | 
 
-## 
+## What are the countries with the highest contribution to carbon emissions?
+```sql
+select 
+	prd_em.country_id, cou.country_name,
+	Round(avg(prd_em.carbon_footprint_pcf),2) as Avg_PCF
+from product_emissions as prd_em
+join countries as cou on prd_em.country_id = cou.id
+group by cou.country_name
+order by avg(prd_em.carbon_footprint_pcf) desc
+limit 10;
+```
+
+| country_id | country_name | Avg_PCF   | 
+| ---------: | -----------: | --------: | 
+| 23         | Spain        | 699009.29 | 
+| 18         | Luxembourg   | 83503.50  | 
+| 10         | Germany      | 33600.37  | 
+| 3          | Brazil       | 9407.61   | 
+| 22         | South Korea  | 5665.61   | 
+| 16         | Japan        | 4600.26   | 
+| 20         | Netherlands  | 2011.91   | 
+| 12         | India        | 1535.88   | 
+| 28         | USA          | 1332.60   | 
+| 21         | South Africa | 1119.27   | 
+
+
+## What is the trend of carbon footprints (PCFs) over the years?
+
