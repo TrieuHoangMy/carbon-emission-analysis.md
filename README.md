@@ -59,4 +59,29 @@ limit 10;
 | Mercedes-Benz GLE (GLE 500 4MATIC)                                                                                                 | Automobiles & Components           | 91000.00   | 
 | Mercedes-Benz S-Class (S 500)                                                                                                      | Automobiles & Components           | 85000.00   | 
 | Mercedes-Benz SL (SL 350)                                                                                                          | Automobiles & Components           | 72000.00   | 
+
+## The industries with the highest contribution to carbon emissions
+```sql
+select 
+	ind_gr.industry_group,
+	Round(avg(prd_em.carbon_footprint_pcf),2) as Avg_PCF
+from product_emissions as prd_em
+join industry_groups as ind_gr on prd_em.industry_group_id = ind_gr.id
+group by ind_gr.industry_group
+order by avg(prd_em.carbon_footprint_pcf) desc
+limit 10;
+```
+| industry_group                                   | Avg_PCF   | 
+| -----------------------------------------------: | --------: | 
+| Electrical Equipment and Machinery               | 891050.73 | 
+| Automobiles & Components                         | 35373.48  | 
+| "Pharmaceuticals, Biotechnology & Life Sciences" | 24162.00  | 
+| Capital Goods                                    | 7391.77   | 
+| Materials                                        | 3208.86   | 
+| "Mining - Iron, Aluminum, Other Metals"          | 2727.00   | 
+| Energy                                           | 2154.80   | 
+| Chemicals                                        | 1949.03   | 
+| Media                                            | 1534.47   | 
+| Software & Services                              | 1368.94   | 
+
 ## 
